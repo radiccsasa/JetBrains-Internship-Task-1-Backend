@@ -14,6 +14,11 @@ public class Query {
     @NotNull
     private String text;
 
+    public Query(Long id, String text) {
+        this.id = id;
+        this.text = text;
+    }
+
     public Long getId() {
         return id;
     }
