@@ -1,6 +1,8 @@
 package com.example.queryapp.controller;
 
-import org.springframework.http.ResponseEntity;
+import com.example.queryapp.model.Query;
+import com.example.queryapp.repository.QueryRepository;
+import com.example.queryapp.service.QueryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,22 +12,28 @@ import java.util.Map;
 @RequestMapping("/queries")
 public class QueryController {
 
+    private final QueryService queryService;
+
+    public QueryController(QueryService queryService) {
+        this.queryService = queryService;
+    }
+
     @PostMapping
-    public ResponseEntity<?> addQuery(@RequestBody String SqlText)
+    public Map<String, Long> addQuery(@RequestBody String SqlText)
     {
-        return ResponseEntity.status();
+        return Map.of("Id", queryService.saveQuery(SqlText));
     }
 
     @GetMapping
-    public List<Map<String, Object>> listAll(){
-
+    public List<Query> listAll(){
+        return queryService.getAll();
     }
 
 
     @GetMapping("/execute")
-    public execute(@RequestParam("query") Long id)
+    public List<List<Object>> execute(@RequestParam("query") Long id)
     {
-        
+        return queryService.executeQuery(id);
     }
 
 }

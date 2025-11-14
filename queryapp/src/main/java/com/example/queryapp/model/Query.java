@@ -14,8 +14,9 @@ public class Query {
     @NotNull
     private String text;
 
-    public Query(Long id, String text) {
-        this.id = id;
+    public Query(){}
+
+    public Query(String text) {
         this.text = text;
     }
 
