@@ -36,4 +36,10 @@ public class QueryController {
         return queryService.executeQuery(id);
     }
 
+    @GetMapping("/executeAsync")
+    public String executeQueryAsync(@RequestParam Long query) {
+        queryService.executeQueryAsync(query);
+        return "Query execution started for ID: " + query;
+    }
+
 }
