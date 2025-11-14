@@ -67,6 +67,9 @@ public class QueryService {
                 }
                 rows.add(row);
             }
+
+            queryCache.put(id, rows);
+
             return rows;
         });
 
